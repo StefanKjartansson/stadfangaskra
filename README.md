@@ -1,4 +1,4 @@
 stadfangaskra
 =============
 
-Icelandic Address geocoding &amp; lookup library
+Icelandic Address geocoding &amp; lookup library.
