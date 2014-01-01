@@ -19,6 +19,10 @@ func Exists(name string) bool {
 	return true
 }
 
+func GetById(ID int) *Location {
+	return DefaultStore.GetById(ID)
+}
+
 func init() {
 
 	path := os.Getenv("STADFANGASKRA_DB")

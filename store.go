@@ -2,7 +2,6 @@ package stadfangaskra
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
 	"regexp"
@@ -11,12 +10,11 @@ import (
 )
 
 var (
-	ErrInvalidIndex = errors.New("Missing Search Index")
-	reNumber        = regexp.MustCompile(`\d+-?\.?`)
-	rePostcode      = regexp.MustCompile(`\d{3}\s+`)
-	reRemainder     = regexp.MustCompile(`^[a-zA-Z]{1}$`)
-	reStrictNumber  = regexp.MustCompile(`^\d+$`)
-	excemptionList  = []string{
+	reNumber       = regexp.MustCompile(`\d+-?\.?`)
+	rePostcode     = regexp.MustCompile(`\d{3}\s+`)
+	reRemainder    = regexp.MustCompile(`^[a-zA-Z]{1}$`)
+	reStrictNumber = regexp.MustCompile(`^\d+$`)
+	excemptionList = []string{
 		"Domus",
 		"Medica",
 	}
@@ -96,7 +94,7 @@ func (s *Store) FindByQuery(query Location) (*Location, error) {
 	si := query.GetSearchIndex()
 	possibles, ok := s.SearchIndex[si]
 	if !ok {
-		return nil, ErrInvalidIndex
+		return nil, fmt.Errorf("Missing Search Index for: %+v", si)
 	}
 
 	for _, l := range possibles {
@@ -125,7 +123,7 @@ func ParseLocation(s string) (query Location, err error) {
 
 	pcl := rePostcode.FindStringSubmatchIndex(s)
 	if pcl == nil {
-		err = fmt.Errorf("No postcode found for: '%s'", s)
+		err = fmt.Errorf("No postcode found for: '%s'\n", s)
 		return
 	}
 
