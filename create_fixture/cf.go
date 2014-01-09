@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/StefanKjartansson/isnet93"
 	iconv "github.com/djimenez/iconv-go"
 	"io"
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -27,6 +27,7 @@ type Location struct {
 	Bokst          string `json:"house_characters,omitempty"`
 	Serheiti       string `json:"specific_name,omitempty"`
 	Heiti_Nf       string `json:"street,omitempty"`
+	Heiti_Þf       string `json:"street_dative,omitempty"`
 	Sveitarfelag   string `json:"municipality,omitempty"`
 	Coordinates    struct {
 		X float64 `json:"x"`
@@ -57,6 +58,8 @@ func ImportFromRecord(record []string) (loc Location, err error) {
 			loc.Fasteignaheiti = i
 		case 8:
 			loc.Heiti_Nf = i
+		case 9:
+			loc.Heiti_Þf = i
 		case 11:
 			loc.Bokst = i
 		case 13:
@@ -65,10 +68,8 @@ func ImportFromRecord(record []string) (loc Location, err error) {
 		}
 	}
 
-	x, _ := strconv.ParseFloat(record[22], floatSize)
-	y, _ := strconv.ParseFloat(record[23], floatSize)
-
-	loc.Coordinates.X, loc.Coordinates.Y = isnet93.Isnet93ToWgs84(x, y)
+	loc.Coordinates.X, _ = strconv.ParseFloat(strings.Replace(record[23], ",", ".", -1), floatSize)
+	loc.Coordinates.Y, _ = strconv.ParseFloat(strings.Replace(record[24], ",", ".", -1), floatSize)
 
 	loc.Sveitarfelag = postCodes[loc.Postnr]
 
