@@ -7,6 +7,6 @@ test: .PHONY
 	go test -v
 
 fixture:
-	go run ${fixture_gen} ${data_path}/Stadfangaskra_20130326.dsv ${data_path}/postnumer.txt > db.json
+	go run ${fixture_gen} ${data_path}/Stadfangaskra_20131028.dsv ${data_path}/postnumer.txt > db.json
 
 .PHONY:
