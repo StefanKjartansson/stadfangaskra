@@ -23,6 +23,10 @@ func GetById(ID int) *Location {
 	return DefaultStore.GetById(ID)
 }
 
+func Geocode(s string) (*Location, error) {
+	return DefaultStore.FindByString(s)
+}
+
 func init() {
 
 	path := os.Getenv("STADFANGASKRA_DB")
