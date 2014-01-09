@@ -62,16 +62,20 @@ func NewStore(file io.ReadCloser) (*Store, error) {
 		}
 		s.Locations[idx].JSONCache = b
 
-		tmp := l.GetSearchIndex()
+		tmp := l.GetSearchIndices()
 
-		val, ok := s.SearchIndex[tmp]
+		for _, t := range tmp {
+			val, ok := s.SearchIndex[t]
 
-		if !ok {
-			val = []*Location{}
+			if !ok {
+				val = []*Location{}
+			}
+
+			val = append(val, &s.Locations[idx])
+			s.SearchIndex[t] = val
+
 		}
 
-		val = append(val, &s.Locations[idx])
-		s.SearchIndex[tmp] = val
 	}
 
 	return &s, nil

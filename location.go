@@ -12,10 +12,20 @@ type Location struct {
 	NumberChars  string `json:"house_characters,omitempty"`
 	SpecificName string `json:"specific_name,omitempty"`
 	Street       string `json:"street,omitempty"`
+	StreetDative string `json:"street_dative,omitempty"`
 	Postcode     int    `json:"postcode"`
 	Municipality string `json:"municipality,omitempty"`
 	Coordinates  Point  `json:"coordinates"`
 	JSONCache    []byte `json:"-"`
+}
+
+func (l *Location) GetSearchIndices() []AddressCompound {
+
+	return []AddressCompound{
+		{l.Postcode, l.Street},
+		{l.Postcode, l.StreetDative},
+	}
+
 }
 
 func (l *Location) GetSearchIndex() AddressCompound {
