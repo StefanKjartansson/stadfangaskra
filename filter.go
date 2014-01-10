@@ -19,7 +19,7 @@ func StringMatchesWildcard(value, wildcard string) bool {
 			return true
 		}
 	} else if strings.HasPrefix(wildcard, "*") {
-		v := wildcard[strings.Index(wildcard, "*")+1 : len(wildcard)]
+		v := wildcard[strings.Index(wildcard, "*")+1:]
 		if strings.HasSuffix(value, v) {
 			return true
 		}
