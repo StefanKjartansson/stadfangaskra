@@ -1,9 +1,6 @@
 image: library/golang:1.4
 git:
   path: github.com/StefanKjartansson/stadfangaskra
-env:
-  - GOROOT=/usr/local/go
-  - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 script:
   - go get github.com/StefanKjartansson/isnet93
   - go get github.com/djimenez/iconv-go
