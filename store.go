@@ -4,11 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"regexp"
-	"strconv"
-	"strings"
 )
 
+/*
 var (
 	reNumber       = regexp.MustCompile(`\d+-?\.?`)
 	rePostcode     = regexp.MustCompile(`\d{3}\s+`)
@@ -19,6 +17,7 @@ var (
 		"Medica",
 	}
 )
+*/
 
 func stringInSlice(a string, list []string) bool {
 	for _, b := range list {
@@ -83,12 +82,15 @@ func NewStore(file io.ReadCloser) (*Store, error) {
 
 func (s *Store) FindByString(query string) (*Location, error) {
 
-	q, err := ParseLocation(query)
-	if err != nil {
-		return nil, err
-	}
+	return nil, nil
+	/*
+		q, err := ParseLocation(query)
+		if err != nil {
+			return nil, err
+		}
 
-	return s.FindByQuery(q)
+		return s.FindByQuery(q)
+	*/
 }
 
 // FindByQuery
@@ -122,6 +124,9 @@ func (s *Store) GetById(ID int) *Location {
 	}
 	return val
 }
+
+/*
+
 
 func ParseLocation(s string) (query Location, err error) {
 
@@ -212,3 +217,4 @@ func ParseLocation(s string) (query Location, err error) {
 
 	return
 }
+*/
