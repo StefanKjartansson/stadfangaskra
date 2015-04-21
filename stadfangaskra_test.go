@@ -6,10 +6,14 @@ import (
 
 func BenchmarkGeocode(b *testing.B) {
 
-	content := "Furugrund 40, 200 Kópavogur"
+	f, _ := ByLocationString("Furugrund 40, 200 Kópavogur")
+
+	if f == nil {
+		return
+	}
 
 	for i := 0; i < b.N; i++ {
-		_, _ = Geocode(content)
+		_, _ = Stadfangaskra.Find(f)
 	}
 
 }
