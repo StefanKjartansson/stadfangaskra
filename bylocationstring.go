@@ -89,7 +89,6 @@ func ByLocationString(s string) (FindFilter, error) {
 
 	var numberFilter FindFilter
 	if houseNumber != "" {
-		fmt.Printf("\t---> %q\n", houseNumber)
 		numberFilter, err = ByNumber(houseNumber)
 		if err != nil {
 			return nil, err
