@@ -2,6 +2,7 @@ image: library/golang:1.4
 git:
   path: github.com/StefanKjartansson/stadfangaskra
 script:
+  - go get github.com/stretchr/testify
   - go get github.com/StefanKjartansson/isnet93
   - go get github.com/djimenez/iconv-go
   - make test

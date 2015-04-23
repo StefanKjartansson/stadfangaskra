@@ -12,6 +12,7 @@ before_install:
   - export PATH=$PATH:/home/travis/gopath/bin
 
 install:
+ - go get github.com/stretchr/testify
  - go get github.com/StefanKjartansson/isnet93
  - go get github.com/djimenez/iconv-go
 

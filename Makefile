@@ -5,7 +5,6 @@ package = stadfangaskra
 all: fixture test
 
 test: .PHONY
-	go get github.com/stretchr/testify
 	go test -v
 
 fixture:
