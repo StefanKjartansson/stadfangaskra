@@ -1,5 +1,5 @@
-fixture_gen = ./create_fixture/cf.go
-data_path = ./create_fixture/data
+gen = ./build_json.go
+data_path = ./data
 package = stadfangaskra
 
 all: test
@@ -8,7 +8,7 @@ test: .PHONY
 	go test -v
 
 fixture:
-	go run ${fixture_gen} ${data_path}/Stadfangaskra_20131028.dsv ${data_path}/postnumer.txt > db.json
+	go run ${gen} ${data_path}/stadfang.dsv ${data_path}/postnumer.txt > db.json
 	go-bindata -o database.go -pkg="${package}" db.json
 	rm db.json
 
