@@ -18,16 +18,3 @@ type Location struct {
 	Coordinates  Point  `json:"coordinates"`
 	JSONCache    []byte `json:"-"`
 }
-
-func (l *Location) GetSearchIndices() []AddressCompound {
-
-	return []AddressCompound{
-		{l.Postcode, l.Street},
-		{l.Postcode, l.StreetDative},
-	}
-
-}
-
-func (l *Location) GetSearchIndex() AddressCompound {
-	return AddressCompound{l.Postcode, l.Street}
-}
