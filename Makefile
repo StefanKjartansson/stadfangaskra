@@ -2,7 +2,7 @@ fixture_gen = ./create_fixture/cf.go
 data_path = ./create_fixture/data
 package = stadfangaskra
 
-all: fixture test
+all: test
 
 test: .PHONY
 	go test -v
