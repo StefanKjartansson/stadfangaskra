@@ -11,7 +11,7 @@ var (
 )
 
 func init() {
-	db, err := db_json_bytes()
+	db, err := dbJSONBytes()
 	if err != nil {
 		log.Fatal(err)
 	}
