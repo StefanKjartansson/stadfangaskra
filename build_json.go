@@ -20,15 +20,15 @@ const (
 
 var postCodes = make(map[int]string)
 
-type Location struct {
+type location struct {
 	Hnitnum        int    `json:"id"`
 	Fasteignaheiti string `json:"name"`
 	Postnr         int    `json:"postcode"`
 	Husnr          int    `json:"house_number,omitempty"`
 	Bokst          string `json:"house_characters,omitempty"`
 	Serheiti       string `json:"specific_name,omitempty"`
-	Heiti_Nf       string `json:"street,omitempty"`
-	Heiti_Þf       string `json:"street_dative,omitempty"`
+	HeitiNf        string `json:"street,omitempty"`
+	HeitiÞf        string `json:"street_dative,omitempty"`
 	Sveitarfelag   string `json:"municipality,omitempty"`
 	Coordinates    struct {
 		X float64 `json:"x"`
@@ -36,7 +36,7 @@ type Location struct {
 	} `json:"coordinates"`
 }
 
-func ImportFromRecord(record []string) (loc Location, err error) {
+func importFromRecord(record []string) (loc location, err error) {
 
 	for idx, i := range record {
 
@@ -58,9 +58,9 @@ func ImportFromRecord(record []string) (loc Location, err error) {
 		case 5:
 			loc.Fasteignaheiti = i
 		case 8:
-			loc.Heiti_Nf = i
+			loc.HeitiNf = i
 		case 9:
-			loc.Heiti_Þf = i
+			loc.HeitiÞf = i
 		case 11:
 			loc.Bokst = i
 		case 13:
@@ -77,7 +77,7 @@ func ImportFromRecord(record []string) (loc Location, err error) {
 	return
 }
 
-func importStream(source io.Reader) (loc []Location, err error) {
+func importStream(source io.Reader) (loc []location, err error) {
 
 	reader := csv.NewReader(source)
 	reader.Comma = '|'
@@ -90,7 +90,7 @@ func importStream(source io.Reader) (loc []Location, err error) {
 		} else if err != nil {
 			return loc, err
 		}
-		t, err := ImportFromRecord(r)
+		t, err := importFromRecord(r)
 
 		if err != nil {
 			return loc, err
@@ -102,7 +102,7 @@ func importStream(source io.Reader) (loc []Location, err error) {
 	return loc, err
 }
 
-func ImportDatabase(pfile string) (loc []Location, err error) {
+func importDatabase(pfile string) (loc []location, err error) {
 	file, err := os.Open(pfile)
 	if err != nil {
 		return loc, err
@@ -155,7 +155,7 @@ func main() {
 	}
 
 	log.Println("Starting import")
-	locations, err := ImportDatabase(args[0])
+	locations, err := importDatabase(args[0])
 
 	if err != nil {
 		log.Fatal(err)
