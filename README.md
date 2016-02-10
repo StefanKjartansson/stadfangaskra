@@ -3,6 +3,7 @@
 stadfangaskra is a library for working with Icelandic addresses. The address data is sourced from the [national registry of Iceland](http://www.skra.is) and distributed as part of the library.
 
 [![Build Status](https://travis-ci.org/StefanKjartansson/stadfangaskra.png?branch=develop)](https://travis-ci.org/StefanKjartansson/stadfangaskra)
+[![Report Card](https://goreportcard.com/badge/github.com/StefanKjartansson/stadfangaskra)](https://goreportcard.com/badge/github.com/StefanKjartansson/stadfangaskra)
 
 ## Installation
 
@@ -27,7 +28,7 @@ import (
 func main() {
 	// Lists even numbered addresses in Kópavogur within 1km of
 	// the Landspítalinn hospital.
-	
+
 	// ByDistance returns a FindFilter function.
 	distance, err := stadfangaskra.ByDistance(stadfangaskra.Point{X: 64.1195478, Y: -21.8807021}, 1.0)
 	if err != nil {
