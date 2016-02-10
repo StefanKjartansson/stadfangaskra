@@ -4,6 +4,7 @@ stadfangaskra is a library for working with Icelandic addresses. The address dat
 
 [![Build Status](https://travis-ci.org/StefanKjartansson/stadfangaskra.png?branch=develop)](https://travis-ci.org/StefanKjartansson/stadfangaskra)
 [![Report Card](https://goreportcard.com/badge/github.com/StefanKjartansson/stadfangaskra)](https://goreportcard.com/badge/github.com/StefanKjartansson/stadfangaskra)
+[![Coverage](http://gocover.io/_badge/github.com/StefanKjartansson/stadfangaskra)](http://gocover.io/github.com/StefanKjartansson/stadfangaskra)
 
 ## Installation
 
