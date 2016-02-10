@@ -17,6 +17,7 @@ func isDigit(r rune) bool {
 	return true
 }
 
+// ByNumber returns a FindFilter matching house numbers.
 func ByNumber(number string) (FindFilter, error) {
 
 	numPart := strings.TrimFunc(number, isDigit)
