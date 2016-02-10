@@ -19,6 +19,7 @@ var (
 )
 
 func ByLocationString(s string) (FindFilter, error) {
+	// TODO, fix. Too complex, should create a list of FindFilters
 
 	pcl := rePostcode.FindStringSubmatchIndex(s)
 	if pcl == nil {
